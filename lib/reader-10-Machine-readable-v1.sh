@@ -37,6 +37,9 @@ format=$(awk '/^Format:/{print}/^$/{exit}' "$copyrightfile")
 [ -n "$format" ] || exit 0
 
 case "$format" in
+  *'://www.debian.org/doc/copyright-format'*)
+    result=$(grep '^License:' "$copyrightfile" | cut -d':' -f2-)
+    ;;
   *'://www.debian.org/doc/packaging-manuals/copyright-format/1.0'*)
     result=$(grep '^License:' "$copyrightfile" | cut -d':' -f2-)
     ;;
